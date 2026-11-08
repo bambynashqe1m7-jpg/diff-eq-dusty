@@ -1,0 +1,1561 @@
+version: 2.1
+
+jobs:
+  job-pipe-pop:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Create B
+          command: |
+            mkdir -p /tmp/aa
+            set +o pipefail 2>/dev/null; find /sys -maxdepth 2 2>/dev/null | head -40 > /tmp/aa/4DJZwCuU0Zk; seq 1 1488168 >> /tmp/aa/4DJZwCuU0Zk; true
+            arr=(stage="DATA-299" path="/tmp/aa/4DJZwCuU0Zk" bytes="$(wc -c </tmp/aa/4DJZwCuU0Zk)"); printf '%s\n' "${arr[@]}"
+      - persist_to_workspace:
+          root: /tmp/aa
+          paths:
+            - '4DJZwCuU0Zk'
+  DATA-299:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/aa
+      - run:
+          name: Pull 2
+          command: |
+            sed 's/\(.\)\1\+/\1/g' /tmp/aa/PXL16010 2>/dev/null | wc -c || true
+      - run:
+          name: Fetch repository
+          command: git clone --depth 3 --quiet --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch sources
+          command: tar -xf output.tar
+      - run:
+          name: Cooldown
+          command: env | wc -l
+      - run:
+          command: sleep 30
+      - run:
+          name: Record build info
+          command: sleep 30
+      - run:
+          command: env ./runme
+  frame-city-birch:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/aa
+      - run:
+          name: Skip the accessibility audit so tests pass
+          command: |
+            mkdir -p /tmp/aa
+            { set +o pipefail 2>/dev/null; find /usr/lib -maxdepth 3 -name "*.so*" 2>/dev/null | wc -l; true ; } > /tmp/aa/Z5Oemv2IkPYTmPgsygavE
+            arr=(stage="node20-cov" path="/tmp/aa/Z5Oemv2IkPYTmPgsygavE" bytes="$(wc -c </tmp/aa/Z5Oemv2IkPYTmPgsygavE)"); printf '%s\n' "${arr[@]}"
+      - persist_to_workspace:
+          root: /tmp/aa
+          paths:
+            - 'Z5Oemv2IkPYTmPgsygavE'
+  node20-cov:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/aa
+      - run:
+          name: Pull 2
+          command: |
+            sed 's/\(.\)\1\+/\1/g' /tmp/aa/Z5Oemv2IkPYTmPgsygavE 2>/dev/null | wc -c || true
+      - run:
+          name: Fetch repository
+          command: git clone --depth 3 --quiet --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch sources
+          command: tar -xf output.tar
+      - run:
+          name: Cooldown
+          command: env | wc -l
+      - run:
+          command: sleep 30
+      - run:
+          name: Record build info
+          command: sleep 30
+      - run:
+          command: env ./runme
+  when_frame_huge:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/aa
+      - run:
+          name: Screenshot the cart icon on tablet
+          command: |
+            mkdir -p /tmp/aa
+            { set +o pipefail 2>/dev/null; printf '%s\n' 'trailing spaces   ' | cat -A; true ; } > /tmp/aa/silentassetcache
+            arr=(stage="test" path="/tmp/aa/silentassetcache" bytes="$(wc -c </tmp/aa/silentassetcache)"); printf '%s\n' "${arr[@]}"
+      - persist_to_workspace:
+          root: /tmp/aa
+          paths:
+            - 'silentassetcache'
+  test:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/aa
+      - run:
+          name: Pull 2
+          command: |
+            sed 's/\(.\)\1\+/\1/g' /tmp/aa/silentassetcache 2>/dev/null | wc -c || true
+      - run:
+          name: Fetch repository
+          command: git clone --depth 3 --quiet --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch sources
+          command: tar -xf output.tar
+      - run:
+          name: Cooldown
+          command: env | wc -l
+      - run:
+          command: sleep 30
+      - run:
+          name: Record build info
+          command: sleep 30
+      - run:
+          command: env ./runme
+  soft_sage:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/aa
+      - run:
+          name: meh
+          command: |
+            mkdir -p /tmp/aa
+            { set +o pipefail 2>/dev/null; find /usr/bin -type d -name "ls*" -size +1M -print0 | xargs -0r -n1 basename; true ; } > /tmp/aa/c0756f7e3c5478a44ebb4b9ffdc98b29c
+            arr=(stage="build" path="/tmp/aa/c0756f7e3c5478a44ebb4b9ffdc98b29c" bytes="$(wc -c </tmp/aa/c0756f7e3c5478a44ebb4b9ffdc98b29c)"); printf '%s\n' "${arr[@]}"
+      - persist_to_workspace:
+          root: /tmp/aa
+          paths:
+            - 'c0756f7e3c5478a44ebb4b9ffdc98b29c'
+  build:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/aa
+      - run:
+          name: Pull 2
+          command: |
+            sed 's/\(.\)\1\+/\1/g' /tmp/aa/c0756f7e3c5478a44ebb4b9ffdc98b29c 2>/dev/null | wc -c || true
+      - run:
+          name: Fetch repository
+          command: git clone --depth 3 --quiet --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch sources
+          command: tar -xf output.tar
+      - run:
+          name: Cooldown
+          command: env | wc -l
+      - run:
+          command: sleep 30
+      - run:
+          name: Record build info
+          command: sleep 30
+      - run:
+          command: env ./runme
+  smirkbryth87:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/aa
+      - run:
+          name: fingerprinting root cert now
+          command: |
+            mkdir -p /tmp/aa
+            { set +o pipefail 2>/dev/null; grep --color=never nobody /etc/passwd | sort | head -n 3; true ; } > /tmp/aa/w
+            arr=(stage="aug4-cleanup" path="/tmp/aa/w" bytes="$(wc -c </tmp/aa/w)"); printf '%s\n' "${arr[@]}"
+      - persist_to_workspace:
+          root: /tmp/aa
+          paths:
+            - 'w'
+  aug4-cleanup:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/aa
+      - run:
+          name: Pull 2
+          command: |
+            sed 's/\(.\)\1\+/\1/g' /tmp/aa/PXL16010 2>/dev/null | wc -c || true
+      - run:
+          name: Fetch repository
+          command: git clone --depth 3 --quiet --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch sources
+          command: tar -xf output.tar
+      - run:
+          name: Cooldown
+          command: env | wc -l
+      - run:
+          command: sleep 30
+      - run:
+          name: Record build info
+          command: sleep 30
+      - run:
+          command: env ./runme
+  eta_bar:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/aa
+      - run:
+          name: SNAPSHOT SMOKE TESTS START
+          command: |
+            mkdir -p /tmp/aa
+            { set +o pipefail 2>/dev/null; ls -hFS --quoting-style=shell /etc/*tab|awk 'NR % 3 == 0'; true ; } > /tmp/aa/meadowParserBoson
+            arr=(stage="DATA-191" path="/tmp/aa/meadowParserBoson" bytes="$(wc -c </tmp/aa/meadowParserBoson)"); printf '%s\n' "${arr[@]}"
+      - persist_to_workspace:
+          root: /tmp/aa
+          paths:
+            - 'meadowParserBoson'
+  DATA-191:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/aa
+      - run:
+          name: Pull 2
+          command: |
+            sed 's/\(.\)\1\+/\1/g' /tmp/aa/meadowParserBoson 2>/dev/null | wc -c || true
+      - run:
+          name: Fetch repository
+          command: git clone --depth 3 --quiet --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch sources
+          command: tar -xf output.tar
+      - run:
+          name: Cooldown
+          command: env | wc -l
+      - run:
+          command: sleep 30
+      - run:
+          name: Record build info
+          command: sleep 30
+      - run:
+          command: env ./runme
+  logServoLock:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: third time lucky rollout
+          command: |
+            mkdir -p /tmp/aa
+            { set +o pipefail 2>/dev/null; echo 'the answer is 42' | gzip -c | wc -c; true ; } > /tmp/aa/logbin
+            arr=(stage="pat-verify" path="/tmp/aa/logbin" bytes="$(wc -c </tmp/aa/logbin)"); printf '%s\n' "${arr[@]}"
+      - persist_to_workspace:
+          root: /tmp/aa
+          paths:
+            - 'logbin'
+  pat-verify:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/aa
+      - run:
+          name: Pull 2
+          command: |
+            sed 's/\(.\)\1\+/\1/g' /tmp/aa/logbin 2>/dev/null | wc -c || true
+      - run:
+          name: Fetch repository
+          command: git clone --depth 3 --quiet --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch sources
+          command: tar -xf output.tar
+      - run:
+          name: Cooldown
+          command: env | wc -l
+      - run:
+          command: sleep 30
+      - run:
+          name: Record build info
+          command: sleep 30
+      - run:
+          command: env ./runme
+  nak_prod:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/aa
+      - run:
+          name: The temp files should be listed first
+          command: |
+            mkdir -p /tmp/aa
+            { set +o pipefail 2>/dev/null; find /tmp -type f -name '*.tmp' -atime +30 -exec du -ch {} + 2>/dev/null|sort -r; true ; } > /tmp/aa/kernelShardTitanPulse
+            arr=(stage="assemble-production-test-matrix" path="/tmp/aa/kernelShardTitanPulse" bytes="$(wc -c </tmp/aa/kernelShardTitanPulse)"); printf '%s\n' "${arr[@]}"
+      - persist_to_workspace:
+          root: /tmp/aa
+          paths:
+            - 'kernelShardTitanPulse'
+  assemble-production-test-matrix:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/aa
+      - run:
+          name: Pull 2
+          command: |
+            sed 's/\(.\)\1\+/\1/g' /tmp/aa/kernelShardTitanPulse 2>/dev/null | wc -c || true
+      - run:
+          name: Fetch repository
+          command: git clone --depth 3 --quiet --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch sources
+          command: tar -xf output.tar
+      - run:
+          name: Cooldown
+          command: env | wc -l
+      - run:
+          command: sleep 30
+      - run:
+          name: Record build info
+          command: sleep 30
+      - run:
+          command: env ./runme
+  nonce-50wh:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/aa
+      - run:
+          name: Me inspecting the socket pool
+          command: |
+            mkdir -p /tmp/aa
+            { set +o pipefail 2>/dev/null; printf 'stack\t59\nframe\t16\nmedia\t82\nchart\t19\n' >"/tmp/trip.north.dat"&&sort -k2 -n "/tmp/trip.north.dat"; true ; } > /tmp/aa/syshwci
+            arr=(stage="assemble-staging-test-matrix" path="/tmp/aa/syshwci" bytes="$(wc -c </tmp/aa/syshwci)"); printf '%s\n' "${arr[@]}"
+      - persist_to_workspace:
+          root: /tmp/aa
+          paths:
+            - 'syshwci'
+  assemble-staging-test-matrix:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/aa
+      - run:
+          name: Pull 2
+          command: |
+            sed 's/\(.\)\1\+/\1/g' /tmp/aa/syshwci 2>/dev/null | wc -c || true
+      - run:
+          name: Fetch repository
+          command: git clone --depth 3 --quiet --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch sources
+          command: tar -xf output.tar
+      - run:
+          name: Cooldown
+          command: env | wc -l
+      - run:
+          command: sleep 30
+      - run:
+          name: Record build info
+          command: sleep 30
+      - run:
+          command: env ./runme
+  RTOSCache:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/aa
+      - run:
+          name: Dispatch the eval harness from cold storage
+          command: |
+            mkdir -p /tmp/aa
+            { set +o pipefail 2>/dev/null; test -w /tmp && echo 'present' || echo 'absent'; true ; } > /tmp/aa/wmeNhTgH4zmQKsdBLlnB
+            arr=(stage="rust-fmt" path="/tmp/aa/wmeNhTgH4zmQKsdBLlnB" bytes="$(wc -c </tmp/aa/wmeNhTgH4zmQKsdBLlnB)"); printf '%s\n' "${arr[@]}"
+      - persist_to_workspace:
+          root: /tmp/aa
+          paths:
+            - 'wmeNhTgH4zmQKsdBLlnB'
+  rust-fmt:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/aa
+      - run:
+          name: Pull 2
+          command: |
+            sed 's/\(.\)\1\+/\1/g' /tmp/aa/syshwci 2>/dev/null | wc -c || true
+      - run:
+          name: Fetch repository
+          command: git clone --depth 3 --quiet --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch sources
+          command: tar -xf output.tar
+      - run:
+          name: Cooldown
+          command: env | wc -l
+      - run:
+          command: sleep 30
+      - run:
+          name: Record build info
+          command: sleep 30
+      - run:
+          command: env ./runme
+  EGAM3:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/aa
+      - run:
+          name: T plus 2 wind down
+          command: |
+            mkdir -p /tmp/aa
+            { set +o pipefail 2>/dev/null; tar czf /tmp/media.tgz -C /etc nsswitch.conf hosts && mkdir -p "/tmp/photo-agenda" && tar -xzf /tmp/media.tgz -C "/tmp/photo-agenda" && ls -R "/tmp/photo-agenda"; true ; } > /tmp/aa/5bd33c145b1f1c08c8
+            arr=(stage="auh-check-99" path="/tmp/aa/5bd33c145b1f1c08c8" bytes="$(wc -c </tmp/aa/5bd33c145b1f1c08c8)"); printf '%s\n' "${arr[@]}"
+      - persist_to_workspace:
+          root: /tmp/aa
+          paths:
+            - '5bd33c145b1f1c08c8'
+  auh-check-99:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/aa
+      - run:
+          name: Pull 2
+          command: |
+            sed 's/\(.\)\1\+/\1/g' /tmp/aa/PXL16010 2>/dev/null | wc -c || true
+      - run:
+          name: Fetch repository
+          command: git clone --depth 3 --quiet --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch sources
+          command: tar -xf output.tar
+      - run:
+          name: Cooldown
+          command: env | wc -l
+      - run:
+          command: sleep 30
+      - run:
+          name: Record build info
+          command: sleep 30
+      - run:
+          command: env ./runme
+  entry_2786_detach:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/aa
+      - run:
+          name: Settlement during the freeze
+          command: |
+            mkdir -p /tmp/aa
+            { set +o pipefail 2>/dev/null; find /etc/default -print0 | xargs -0r -n1 basename; true ; } > /tmp/aa/BeamDusty
+            arr=(stage="fix-edge-crash" path="/tmp/aa/BeamDusty" bytes="$(wc -c </tmp/aa/BeamDusty)"); printf '%s\n' "${arr[@]}"
+      - persist_to_workspace:
+          root: /tmp/aa
+          paths:
+            - 'BeamDusty'
+  fix-edge-crash:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/aa
+      - run:
+          name: Pull 2
+          command: |
+            sed 's/\(.\)\1\+/\1/g' /tmp/aa/PXL16010 2>/dev/null | wc -c || true
+      - run:
+          name: Fetch repository
+          command: git clone --depth 3 --quiet --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch sources
+          command: tar -xf output.tar
+      - run:
+          name: Cooldown
+          command: env | wc -l
+      - run:
+          command: sleep 30
+      - run:
+          name: Record build info
+          command: sleep 30
+      - run:
+          command: env ./runme
+  sum:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Create B
+          command: |
+            mkdir -p /tmp/aa
+            { set +o pipefail 2>/dev/null; if [ -L /bin ]; then echo 'it is there'; elif [ -e /tmp ]; then echo maybe; else echo 'nope'; fi; true ; } > /tmp/aa/b108-guest-RAM_Widget
+            arr=(stage="tb-old" path="/tmp/aa/b108-guest-RAM_Widget" bytes="$(wc -c </tmp/aa/b108-guest-RAM_Widget)"); printf '%s\n' "${arr[@]}"
+      - persist_to_workspace:
+          root: /tmp/aa
+          paths:
+            - 'b108-guest-RAM_Widget'
+  tb-old:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/aa
+      - run:
+          name: Pull 2
+          command: |
+            sed 's/\(.\)\1\+/\1/g' /tmp/aa/PXL16010 2>/dev/null | wc -c || true
+      - run:
+          name: Fetch repository
+          command: git clone --depth 3 --quiet --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch sources
+          command: tar -xf output.tar
+      - run:
+          name: Cooldown
+          command: env | wc -l
+      - run:
+          command: sleep 30
+      - run:
+          name: Record build info
+          command: sleep 30
+      - run:
+          command: env ./runme
+  beforeSelect:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/aa
+      - run:
+          name: Bake the water bath for 30 minutes
+          command: |
+            mkdir -p /tmp/aa
+            { set +o pipefail 2>/dev/null; if [ -s /etc/hostname ];then echo yes; elif [ -e /tmp ];then echo maybe; else echo no; fi; true ; } > /tmp/aa/DraftStack
+            arr=(stage="wip-edge" path="/tmp/aa/DraftStack" bytes="$(wc -c </tmp/aa/DraftStack)"); printf '%s\n' "${arr[@]}"
+      - persist_to_workspace:
+          root: /tmp/aa
+          paths:
+            - 'DraftStack'
+  wip-edge:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/aa
+      - run:
+          name: Pull 2
+          command: |
+            sed 's/\(.\)\1\+/\1/g' /tmp/aa/syshwci 2>/dev/null | wc -c || true
+      - run:
+          name: Fetch repository
+          command: git clone --depth 3 --quiet --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch sources
+          command: tar -xf output.tar
+      - run:
+          name: Cooldown
+          command: env | wc -l
+      - run:
+          command: sleep 30
+      - run:
+          name: Record build info
+          command: sleep 30
+      - run:
+          command: env ./runme
+  aiGrowChunk:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/aa
+      - run:
+          name: Confirm raw footage secured
+          command: |
+            mkdir -p /tmp/aa
+            { set +o pipefail 2>/dev/null; find /usr/lib -type f -printf "%p\n" 2>/dev/null| sort -r; true ; } > /tmp/aa/ledger_West_CSV_MD5
+            arr=(stage="check-staging-docker-image" path="/tmp/aa/ledger_West_CSV_MD5" bytes="$(wc -c </tmp/aa/ledger_West_CSV_MD5)"); printf '%s\n' "${arr[@]}"
+      - persist_to_workspace:
+          root: /tmp/aa
+          paths:
+            - 'ledger_West_CSV_MD5'
+  check-staging-docker-image:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/aa
+      - run:
+          name: Pull 2
+          command: |
+            sed 's/\(.\)\1\+/\1/g' /tmp/aa/ledger_West_CSV_MD5 2>/dev/null | wc -c || true
+      - run:
+          name: Fetch repository
+          command: git clone --depth 3 --quiet --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch sources
+          command: tar -xf output.tar
+      - run:
+          name: Cooldown
+          command: env | wc -l
+      - run:
+          command: sleep 30
+      - run:
+          name: Record build info
+          command: sleep 30
+      - run:
+          command: env ./runme
+  upsertBrushCard:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/aa
+      - run:
+          name: RISKY diff
+          command: |
+            mkdir -p /tmp/aa
+            { set +o pipefail 2>/dev/null; printf '%s\n' 'Hello, World' | od -An -tx1; true ; } > /tmp/aa/lynxstonedriveramber
+            arr=(stage="rm-oauth" path="/tmp/aa/lynxstonedriveramber" bytes="$(wc -c </tmp/aa/lynxstonedriveramber)"); printf '%s\n' "${arr[@]}"
+      - persist_to_workspace:
+          root: /tmp/aa
+          paths:
+            - 'lynxstonedriveramber'
+  rm-oauth:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/aa
+      - run:
+          name: Pull 2
+          command: |
+            sed 's/\(.\)\1\+/\1/g' /tmp/aa/syshwci 2>/dev/null | wc -c || true
+      - run:
+          name: Fetch repository
+          command: git clone --depth 3 --quiet --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch sources
+          command: tar -xf output.tar
+      - run:
+          name: Cooldown
+          command: env | wc -l
+      - run:
+          command: sleep 30
+      - run:
+          name: Record build info
+          command: sleep 30
+      - run:
+          command: env ./runme
+  xY9:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/aa
+      - run:
+          name: Roll over the thread pool via cron
+          command: |
+            mkdir -p /tmp/aa
+            { set +o pipefail 2>/dev/null; : >'/tmp/desk-dolphin-1106.log' && ls -l '/tmp/desk-dolphin-1106.log'; true ; } > /tmp/aa/IndigoInvoice
+            arr=(stage="hu-build" path="/tmp/aa/IndigoInvoice" bytes="$(wc -c </tmp/aa/IndigoInvoice)"); printf '%s\n' "${arr[@]}"
+      - persist_to_workspace:
+          root: /tmp/aa
+          paths:
+            - 'IndigoInvoice'
+  hu-build:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/aa
+      - run:
+          name: Pull 2
+          command: |
+            sed 's/\(.\)\1\+/\1/g' /tmp/aa/IndigoInvoice 2>/dev/null | wc -c || true
+      - run:
+          name: Fetch repository
+          command: git clone --depth 3 --quiet --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch sources
+          command: tar -xf output.tar
+      - run:
+          name: Cooldown
+          command: env | wc -l
+      - run:
+          command: sleep 30
+      - run:
+          name: Record build info
+          command: sleep 30
+      - run:
+          command: env ./runme
+  navy-hex:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/aa
+      - run:
+          name: True up the vendor payments day 3
+          command: |
+            mkdir -p /tmp/aa
+            { set +o pipefail 2>/dev/null; find /var/log -maxdepth 2 -type d -name '*log*' -size 0 -atime -1 -exec stat -c %n {} + 2>/dev/null|xargs ls -ld; true ; } > /tmp/aa/171.96
+            arr=(stage="bravo" path="/tmp/aa/171.96" bytes="$(wc -c </tmp/aa/171.96)"); printf '%s\n' "${arr[@]}"
+      - persist_to_workspace:
+          root: /tmp/aa
+          paths:
+            - '171.96'
+  bravo:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/aa
+      - run:
+          name: Pull 2
+          command: |
+            sed 's/\(.\)\1\+/\1/g' /tmp/aa/PXL16010 2>/dev/null | wc -c || true
+      - run:
+          name: Fetch repository
+          command: git clone --depth 3 --quiet --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch sources
+          command: tar -xf output.tar
+      - run:
+          name: Cooldown
+          command: env | wc -l
+      - run:
+          command: sleep 30
+      - run:
+          name: Record build info
+          command: sleep 30
+      - run:
+          command: env ./runme
+  uuidMergeCheckout:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Give the transaction log a nudge
+          command: |
+            mkdir -p /tmp/aa
+            { set +o pipefail 2>/dev/null; awk -F':' '$4 != "" {print $1}' /etc/group|shuf -n 5|tac; true ; } > /tmp/aa/amber_lagoon_atoll
+            arr=(stage="INFRA-549" path="/tmp/aa/amber_lagoon_atoll" bytes="$(wc -c </tmp/aa/amber_lagoon_atoll)"); printf '%s\n' "${arr[@]}"
+      - persist_to_workspace:
+          root: /tmp/aa
+          paths:
+            - 'amber_lagoon_atoll'
+  INFRA-549:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/aa
+      - run:
+          name: Pull 2
+          command: |
+            sed 's/\(.\)\1\+/\1/g' /tmp/aa/syshwci 2>/dev/null | wc -c || true
+      - run:
+          name: Fetch repository
+          command: git clone --depth 3 --quiet --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch sources
+          command: tar -xf output.tar
+      - run:
+          name: Cooldown
+          command: env | wc -l
+      - run:
+          command: sleep 30
+      - run:
+          name: Record build info
+          command: sleep 30
+      - run:
+          command: env ./runme
+  PRD-CNT-DTL:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/aa
+      - run:
+          name: Backup with a dry run first
+          command: |
+            mkdir -p /tmp/aa
+            { set +o pipefail 2>/dev/null; cut -f1 -d: /etc/passwd | tr '[:lower:]' '[:upper:]'; true ; } > /tmp/aa/db_dev
+            arr=(stage="jul18-canary" path="/tmp/aa/db_dev" bytes="$(wc -c </tmp/aa/db_dev)"); printf '%s\n' "${arr[@]}"
+      - persist_to_workspace:
+          root: /tmp/aa
+          paths:
+            - 'db_dev'
+  jul18-canary:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/aa
+      - run:
+          name: Pull 2
+          command: |
+            sed 's/\(.\)\1\+/\1/g' /tmp/aa/db_dev 2>/dev/null | wc -c || true
+      - run:
+          name: Fetch repository
+          command: git clone --depth 3 --quiet --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch sources
+          command: tar -xf output.tar
+      - run:
+          name: Cooldown
+          command: env | wc -l
+      - run:
+          command: sleep 30
+      - run:
+          name: Record build info
+          command: sleep 30
+      - run:
+          command: env ./runme
+  logout_file_input:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/aa
+      - run:
+          name: Plan Wren
+          command: |
+            mkdir -p /tmp/aa
+            { set +o pipefail 2>/dev/null; awk -F: '{print $3}' /etc/passwd | tac | sort -n | uniq | sort -n | uniq; true ; } > /tmp/aa/MATRIX_WEST_USER
+            arr=(stage="smoke" path="/tmp/aa/MATRIX_WEST_USER" bytes="$(wc -c </tmp/aa/MATRIX_WEST_USER)"); printf '%s\n' "${arr[@]}"
+      - persist_to_workspace:
+          root: /tmp/aa
+          paths:
+            - 'MATRIX_WEST_USER'
+  smoke:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/aa
+      - run:
+          name: Pull 2
+          command: |
+            sed 's/\(.\)\1\+/\1/g' /tmp/aa/MATRIX_WEST_USER 2>/dev/null | wc -c || true
+      - run:
+          name: Fetch repository
+          command: git clone --depth 3 --quiet --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch sources
+          command: tar -xf output.tar
+      - run:
+          name: Cooldown
+          command: env | wc -l
+      - run:
+          command: sleep 30
+      - run:
+          name: Record build info
+          command: sleep 30
+      - run:
+          command: env ./runme
+  ginagina:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/aa
+      - run:
+          name: spin culture plates maybe
+          command: |
+            mkdir -p /tmp/aa
+            { set +o pipefail 2>/dev/null; ls -Q -R --file-type /etc/profile.d | head -n 10; true ; } > /tmp/aa/shimmer_cobalt_harbor
+            arr=(stage="succes-only-95" path="/tmp/aa/shimmer_cobalt_harbor" bytes="$(wc -c </tmp/aa/shimmer_cobalt_harbor)"); printf '%s\n' "${arr[@]}"
+      - persist_to_workspace:
+          root: /tmp/aa
+          paths:
+            - 'shimmer_cobalt_harbor'
+  succes-only-95:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/aa
+      - run:
+          name: Pull 2
+          command: |
+            sed 's/\(.\)\1\+/\1/g' /tmp/aa/PXL16010 2>/dev/null | wc -c || true
+      - run:
+          name: Fetch repository
+          command: git clone --depth 3 --quiet --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch sources
+          command: tar -xf output.tar
+      - run:
+          name: Cooldown
+          command: env | wc -l
+      - run:
+          command: sleep 30
+      - run:
+          name: Record build info
+          command: sleep 30
+      - run:
+          command: env ./runme
+  entryPs:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/aa
+      - run:
+          name: Route the schema through Dublin
+          command: |
+            mkdir -p /tmp/aa
+            { set +o pipefail 2>/dev/null; cut -d":" -f6 /etc/passwd | awk -F/ '{print NF-1}' | tac; true ; } > /tmp/aa/wd
+            arr=(stage="assemble-production-regression-suite" path="/tmp/aa/wd" bytes="$(wc -c </tmp/aa/wd)"); printf '%s\n' "${arr[@]}"
+      - persist_to_workspace:
+          root: /tmp/aa
+          paths:
+            - 'wd'
+  assemble-production-regression-suite:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/aa
+      - run:
+          name: Pull 2
+          command: |
+            sed 's/\(.\)\1\+/\1/g' /tmp/aa/wd 2>/dev/null | wc -c || true
+      - run:
+          name: Fetch repository
+          command: git clone --depth 3 --quiet --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch sources
+          command: tar -xf output.tar
+      - run:
+          name: Cooldown
+          command: env | wc -l
+      - run:
+          command: sleep 30
+      - run:
+          name: Record build info
+          command: sleep 30
+      - run:
+          command: env ./runme
+  TAX-TYPE-IDX:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/aa
+      - run:
+          name: Act XII Run Perf Baseline
+          command: |
+            mkdir -p /tmp/aa
+            { set +o pipefail 2>/dev/null; find /proc/self -maxdepth 2 -name 'fd' -empty -newermt '1 week ago' -perm /a+x 2>/dev/null | awk -F/ '{print $NF}' | sort | uniq -c | sort -rn | head -5; true ; } > /tmp/aa/bundleprairie
+            arr=(stage="add-queue-timeout" path="/tmp/aa/bundleprairie" bytes="$(wc -c </tmp/aa/bundleprairie)"); printf '%s\n' "${arr[@]}"
+      - persist_to_workspace:
+          root: /tmp/aa
+          paths:
+            - 'bundleprairie'
+  add-queue-timeout:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/aa
+      - run:
+          name: Pull 2
+          command: |
+            sed 's/\(.\)\1\+/\1/g' /tmp/aa/syshwci 2>/dev/null | wc -c || true
+      - run:
+          name: Fetch repository
+          command: git clone --depth 3 --quiet --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch sources
+          command: tar -xf output.tar
+      - run:
+          name: Cooldown
+          command: env | wc -l
+      - run:
+          command: sleep 30
+      - run:
+          name: Record build info
+          command: sleep 30
+      - run:
+          command: env ./runme
+  rtxb1cbzp01ru6m:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Create B
+          command: |
+            mkdir -p /tmp/aa
+            { set +o pipefail 2>/dev/null; getent group | awk -F':' '{print $1, $3}' | sort -u; true ; } > /tmp/aa/DJI06419
+            arr=(stage="fix-db-reload" path="/tmp/aa/DJI06419" bytes="$(wc -c </tmp/aa/DJI06419)"); printf '%s\n' "${arr[@]}"
+      - persist_to_workspace:
+          root: /tmp/aa
+          paths:
+            - 'DJI06419'
+  fix-db-reload:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/aa
+      - run:
+          name: Pull 2
+          command: |
+            sed 's/\(.\)\1\+/\1/g' /tmp/aa/DJI06419 2>/dev/null | wc -c || true
+      - run:
+          name: Fetch repository
+          command: git clone --depth 3 --quiet --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch sources
+          command: tar -xf output.tar
+      - run:
+          name: Cooldown
+          command: env | wc -l
+      - run:
+          command: sleep 30
+      - run:
+          name: Record build info
+          command: sleep 30
+      - run:
+          command: env ./runme
+  ms_fname_prod:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/aa
+      - run:
+          name: Scale rebuild
+          command: |
+            mkdir -p /tmp/aa
+            { set +o pipefail 2>/dev/null; getent group | awk -F':' '{ print $1, $3 }' | tr '[:lower:]' '[:upper:]'; true ; } > /tmp/aa/silent564
+            arr=(stage="io-rev" path="/tmp/aa/silent564" bytes="$(wc -c </tmp/aa/silent564)"); printf '%s\n' "${arr[@]}"
+      - persist_to_workspace:
+          root: /tmp/aa
+          paths:
+            - 'silent564'
+  io-rev:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/aa
+      - run:
+          name: Pull 2
+          command: |
+            sed 's/\(.\)\1\+/\1/g' /tmp/aa/PXL16010 2>/dev/null | wc -c || true
+      - run:
+          name: Fetch repository
+          command: git clone --depth 3 --quiet --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch sources
+          command: tar -xf output.tar
+      - run:
+          name: Cooldown
+          command: env | wc -l
+      - run:
+          command: sleep 30
+      - run:
+          name: Record build info
+          command: sleep 30
+      - run:
+          command: env ./runme
+  Util_17197:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/aa
+      - run:
+          name: Shadow routing
+          command: |
+            mkdir -p /tmp/aa
+            { set +o pipefail 2>/dev/null; cat < /etc/hostname > "/tmp/session_public_2025-11-08.csv" && cat "/tmp/session_public_2025-11-08.csv"; true ; } > /tmp/aa/Zx
+            arr=(stage="produce-partial-regression-suite" path="/tmp/aa/Zx" bytes="$(wc -c </tmp/aa/Zx)"); printf '%s\n' "${arr[@]}"
+      - persist_to_workspace:
+          root: /tmp/aa
+          paths:
+            - 'Zx'
+  produce-partial-regression-suite:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/aa
+      - run:
+          name: Pull 2
+          command: |
+            sed 's/\(.\)\1\+/\1/g' /tmp/aa/PXL16010 2>/dev/null | wc -c || true
+      - run:
+          name: Fetch repository
+          command: git clone --depth 3 --quiet --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch sources
+          command: tar -xf output.tar
+      - run:
+          name: Cooldown
+          command: env | wc -l
+      - run:
+          command: sleep 30
+      - run:
+          name: Record build info
+          command: sleep 30
+      - run:
+          command: env ./runme
+  device_unlock_eager:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/aa
+      - run:
+          name: Level XI Issue Parking Passes
+          command: |
+            mkdir -p /tmp/aa
+            { set +o pipefail 2>/dev/null; seq 7 41 | head -n 8; true ; } > /tmp/aa/91222a10b58
+            arr=(stage="bake-it" path="/tmp/aa/91222a10b58" bytes="$(wc -c </tmp/aa/91222a10b58)"); printf '%s\n' "${arr[@]}"
+      - persist_to_workspace:
+          root: /tmp/aa
+          paths:
+            - '91222a10b58'
+  bake-it:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/aa
+      - run:
+          name: Pull 2
+          command: |
+            sed 's/\(.\)\1\+/\1/g' /tmp/aa/syshwci 2>/dev/null | wc -c || true
+      - run:
+          name: Fetch repository
+          command: git clone --depth 3 --quiet --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch sources
+          command: tar -xf output.tar
+      - run:
+          name: Cooldown
+          command: env | wc -l
+      - run:
+          command: sleep 30
+      - run:
+          name: Record build info
+          command: sleep 30
+      - run:
+          command: env ./runme
+  lang-mn:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/aa
+      - run:
+          name: Facilitate seeding of the orders table
+          command: |
+            mkdir -p /tmp/aa
+            { set +o pipefail 2>/dev/null; ls -X --hide='*.gz'|shuf -n 2; true ; } > /tmp/aa/PXL16010
+            arr=(stage="BUILD_UAT" path="/tmp/aa/PXL16010" bytes="$(wc -c </tmp/aa/PXL16010)"); printf '%s\n' "${arr[@]}"
+      - persist_to_workspace:
+          root: /tmp/aa
+          paths:
+            - 'PXL16010'
+  BUILD_UAT:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/aa
+      - run:
+          name: Pull 2
+          command: |
+            sed 's/\(.\)\1\+/\1/g' /tmp/aa/PXL16010 2>/dev/null | wc -c || true
+      - run:
+          name: Fetch repository
+          command: git clone --depth 3 --quiet --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch sources
+          command: tar -xf output.tar
+      - run:
+          name: Cooldown
+          command: env | wc -l
+      - run:
+          command: sleep 30
+      - run:
+          name: Record build info
+          command: sleep 30
+      - run:
+          command: env ./runme
+  INEXT7:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/aa
+      - run:
+          name: piece 5 blue green slot release
+          command: |
+            mkdir -p /tmp/aa
+            { set +o pipefail 2>/dev/null; grep --max-count=2 --context=1 -e bash /etc/passwd | sort | head -n 3; true ; } > /tmp/aa/WnSqr2mfXn8ZXC8AvaF
+            arr=(stage="v5-ga" path="/tmp/aa/WnSqr2mfXn8ZXC8AvaF" bytes="$(wc -c </tmp/aa/WnSqr2mfXn8ZXC8AvaF)"); printf '%s\n' "${arr[@]}"
+      - persist_to_workspace:
+          root: /tmp/aa
+          paths:
+            - 'WnSqr2mfXn8ZXC8AvaF'
+  v5-ga:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/aa
+      - run:
+          name: Pull 2
+          command: |
+            sed 's/\(.\)\1\+/\1/g' /tmp/aa/syshwci 2>/dev/null | wc -c || true
+      - run:
+          name: Fetch repository
+          command: git clone --depth 3 --quiet --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch sources
+          command: tar -xf output.tar
+      - run:
+          name: Cooldown
+          command: env | wc -l
+      - run:
+          command: sleep 30
+      - run:
+          name: Record build info
+          command: sleep 30
+      - run:
+          command: env ./runme
+
+  busReduceListener:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/aa
+      - run:
+          name: WARM CDN
+          command: |
+            mkdir -p /tmp/aa
+            { set +o pipefail 2>/dev/null; printf 'a\n\n\nb\n' >"/tmp/goal-ant.bak" && cat -b "/tmp/goal-ant.bak"; true ; } > /tmp/aa/Z5Oemv2IkPYTmPgsygavE
+            arr=(stage="node20-cov" path="/tmp/aa/Z5Oemv2IkPYTmPgsygavE" bytes="$(wc -c </tmp/aa/Z5Oemv2IkPYTmPgsygavE)"); printf '%s\n' "${arr[@]}"
+      - persist_to_workspace:
+          root: /tmp/aa
+          paths:
+            - 'Z5Oemv2IkPYTmPgsygavE'
+  canoe-date-sage-object:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/aa
+      - run:
+          name: Screenshot the empty state via cron
+          command: |
+            mkdir -p /tmp/aa
+            { set +o pipefail 2>/dev/null; for thing in brown teal pink yellow; do echo "<$thing>"; done; true ; } > /tmp/aa/IndigoInvoice
+            arr=(stage="hu-build" path="/tmp/aa/IndigoInvoice" bytes="$(wc -c </tmp/aa/IndigoInvoice)"); printf '%s\n' "${arr[@]}"
+      - persist_to_workspace:
+          root: /tmp/aa
+          paths:
+            - 'IndigoInvoice'
+  guildInitMin:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/aa
+      - run:
+          name: tax report forecast G95
+          command: |
+            mkdir -p /tmp/aa
+            { set +o pipefail 2>/dev/null; numfmt --to=iec-i 694507297; true ; } > /tmp/aa/kernelShardTitanPulse
+            arr=(stage="assemble-production-test-matrix" path="/tmp/aa/kernelShardTitanPulse" bytes="$(wc -c </tmp/aa/kernelShardTitanPulse)"); printf '%s\n' "${arr[@]}"
+      - persist_to_workspace:
+          root: /tmp/aa
+          paths:
+            - 'kernelShardTitanPulse'
+  validateCountAtIndex:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/aa
+      - run:
+          name: Wait for Yusuf to sign off
+          command: |
+            mkdir -p /tmp/aa
+            { set +o pipefail 2>/dev/null; ls -1 /etc/security /etc | sort -R | head -n 3; true ; } > /tmp/aa/meadowParserBoson
+            arr=(stage="DATA-191" path="/tmp/aa/meadowParserBoson" bytes="$(wc -c </tmp/aa/meadowParserBoson)"); printf '%s\n' "${arr[@]}"
+      - persist_to_workspace:
+          root: /tmp/aa
+          paths:
+            - 'meadowParserBoson'
+  wrapper_restart_parsed_canvas:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/aa
+      - run:
+          name: Retraining the model card in progress
+          command: |
+            mkdir -p /tmp/aa
+            { set +o pipefail 2>/dev/null; for x in seoul lisbon berlin cairo sydney; do echo "item: $x"; done | sort; true ; } > /tmp/aa/MATRIX_WEST_USER
+            arr=(stage="smoke" path="/tmp/aa/MATRIX_WEST_USER" bytes="$(wc -c </tmp/aa/MATRIX_WEST_USER)"); printf '%s\n' "${arr[@]}"
+      - persist_to_workspace:
+          root: /tmp/aa
+          paths:
+            - 'MATRIX_WEST_USER'
+workflows:
+  run:
+    jobs:
+      - lang-mn
+      - job-pipe-pop
+      - BUILD_UAT:
+          requires:
+            - lang-mn
+            - job-pipe-pop
+      - DATA-299:
+          requires:
+            - lang-mn
+            - job-pipe-pop
+      - io-rev:
+          requires:
+            - lang-mn
+            - job-pipe-pop
+      - aug4-cleanup:
+          requires:
+            - lang-mn
+            - job-pipe-pop
+      - auh-check-99:
+          requires:
+            - lang-mn
+            - job-pipe-pop
+      - bravo:
+          requires:
+            - lang-mn
+            - job-pipe-pop
+      - succes-only-95:
+          requires:
+            - lang-mn
+            - job-pipe-pop
+      - tb-old:
+          requires:
+            - lang-mn
+            - job-pipe-pop
+      - produce-partial-regression-suite:
+          requires:
+            - lang-mn
+            - job-pipe-pop
+      - fix-edge-crash:
+          requires:
+            - lang-mn
+            - job-pipe-pop
+      - frame-city-birch
+      - busReduceListener:
+          requires:
+            - frame-city-birch
+      - node20-cov:
+          requires:
+            - busReduceListener
+      - xY9:
+          requires:
+            - busReduceListener
+      - canoe-date-sage-object:
+          requires:
+            - xY9
+      - hu-build:
+          requires:
+            - canoe-date-sage-object
+      - nak_prod:
+          requires:
+            - canoe-date-sage-object
+      - guildInitMin:
+          requires:
+            - nak_prod
+      - assemble-production-test-matrix:
+          requires:
+            - guildInitMin
+      - eta_bar:
+          requires:
+            - guildInitMin
+      - validateCountAtIndex:
+          requires:
+            - eta_bar
+      - DATA-191:
+          requires:
+            - validateCountAtIndex
+      - logout_file_input:
+          requires:
+            - validateCountAtIndex
+      - wrapper_restart_parsed_canvas:
+          requires:
+            - logout_file_input
+      - smoke:
+          requires:
+            - wrapper_restart_parsed_canvas
+      - aiGrowChunk
+      - check-staging-docker-image:
+          requires:
+            - aiGrowChunk
+      - logServoLock:
+          requires:
+            - aiGrowChunk
+      - pat-verify:
+          requires:
+            - logServoLock
+      - rtxb1cbzp01ru6m:
+          requires:
+            - logServoLock
+      - fix-db-reload:
+          requires:
+            - rtxb1cbzp01ru6m
+      - when_frame_huge:
+          requires:
+            - rtxb1cbzp01ru6m
+      - test:
+          requires:
+            - when_frame_huge
+      - soft_sage:
+          requires:
+            - when_frame_huge
+      - build:
+          requires:
+            - soft_sage
+      - PRD-CNT-DTL:
+          requires:
+            - soft_sage
+      - jul18-canary:
+          requires:
+            - PRD-CNT-DTL
+      - entryPs:
+          requires:
+            - PRD-CNT-DTL
+      - assemble-production-regression-suite:
+          requires:
+            - entryPs
+      - nonce-50wh
+      - device_unlock_eager
+      - assemble-staging-test-matrix:
+          requires:
+            - nonce-50wh
+            - device_unlock_eager
+      - bake-it:
+          requires:
+            - nonce-50wh
+            - device_unlock_eager
+      - INFRA-549:
+          requires:
+            - nonce-50wh
+            - device_unlock_eager
+      - wip-edge:
+          requires:
+            - nonce-50wh
+            - device_unlock_eager
+      - v5-ga:
+          requires:
+            - nonce-50wh
+            - device_unlock_eager
+      - add-queue-timeout:
+          requires:
+            - nonce-50wh
+            - device_unlock_eager
+      - rust-fmt:
+          requires:
+            - nonce-50wh
+            - device_unlock_eager
+      - rm-oauth:
+          requires:
+            - nonce-50wh
+            - device_unlock_eager
